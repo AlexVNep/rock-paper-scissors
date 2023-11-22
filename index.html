@@ -6,7 +6,34 @@
     </head>
     <body>
         <script>
-            
+            function getComputerChoice () {
+                // declare the variable choice and make it choose randomly between 0 & 2
+                // This gives me 3 possible integers(ie: int) of 0, 1 and 2 which I can equate to rock, paper and scissors
+                // Math.random returns a number between 0 (inclusive) & 1 (exclusive). Math.floor is used to return random integer based on what Math.random is being multiplied by.
+                const int = Math.floor(Math.random() * 3);  
+                
+                if (int === 0) {
+                    return 'Rock';
+                } else if (int === 1) {
+                    return 'Paper';
+                } else {
+                    return 'Scissors';
+                }                
+            }
+            console.log(getComputerChoice())
+
+            const getPlayerChoice = prompt("Rock, paper, scissors shoot")
+            // I must first write a function in the same way I did for the computer selection but with an input from me.
+
+            function game (playerSelection, computerSelection) {
+                let getPlayerChoice = playerSelection;
+                let getComputerChoice  = computerSelection;
+
+            }
+
+            console.log(playerSelection);
+            console.log(computerSelection);
+
         </script>
     </body>
 </html>
