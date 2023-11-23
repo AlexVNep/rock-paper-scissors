@@ -20,19 +20,24 @@
                     return 'Scissors';
                 }                
             }
-            console.log(getComputerChoice())
+            console.log(getComputerChoice());
 
-            const getPlayerChoice = prompt("Rock, paper, scissors shoot")
+            const playerChoice = prompt("rock, paper, scissors shoot")
             // I must first write a function in the same way I did for the computer selection but with an input from me.
 
-            function game (playerSelection, computerSelection) {
-                let getPlayerChoice = playerSelection;
-                let getComputerChoice  = computerSelection;
-
+            function getPlayerChoice () {
+                if (playerChoice === 'rock' || playerChoice === 'Rock' || playerChoice === 'ROCK') {
+                    return 'Rock';
+                } else if (playerChoice === 'paper' || playerChoice === 'Paper' || playerChoice === 'PAPER') {
+                    return 'Paper';
+                } else if (playerChoice === 'scissors' || playerChoice === 'Scissors' || playerChoice === 'SCISSORS') {
+                    return 'Scissors';
+                } else {
+                    return 'Unknown choice';
+                }
             }
+            console.log(getPlayerChoice());
 
-            console.log(playerSelection);
-            console.log(computerSelection);
 
         </script>
     </body>
