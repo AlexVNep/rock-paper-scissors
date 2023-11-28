@@ -6,10 +6,11 @@
     </head>
     <body>
         <script>
-
              // declare the variable choice and make it choose randomly between 0 & 2
-                // This gives me 3 possible integers(ie: int) of 0, 1 and 2 which I can equate to rock, paper and scissors
-                // Math.random returns a number between 0 (inclusive) & 1 (exclusive). Math.floor is used to return random integer based on what Math.random is being multiplied by.
+             // This gives me 3 possible integers(ie: int) of 0, 1 and 2 which I can equate to rock, paper and scissors
+            // Math.random returns a number between 0 (inclusive) & 1 (exclusive). Math.floor is used to return random integer based on what Math.random is being multiplied by.
+            
+        function game () {
             const int = Math.floor(Math.random() * 3);
             function getComputerChoice () {
                 if (int === 0) {
@@ -20,46 +21,74 @@
                     return 'Scissors';
                 }                
             }
-        // console.log(getComputerChoice());
+            // console.log(getComputerChoice());
 
-        const playerChoice = prompt('rock, paper, scissors shoot!');
+             const playerChoice = prompt('rock, paper, scissors shoot!');
         
-        function getPlayerSelection() {
-            if (playerChoice === 'rock' || playerChoice === 'Rock' || playerChoice === 'ROCK') {
-                return 'Rock'; 
-            } else if (playerChoice === 'paper' || playerChoice === 'Paper' || playerChoice === 'PAPER'){ 
-                return 'Paper';
-            } else if (playerChoice === 'scissors' || playerChoice === 'Scissors' || playerChoice ==='Scissors') {
-                return 'Scissors';
-            } else {
-                return 'Unknown choice';
-            }               
+            function getPlayerSelection() {
+                if (playerChoice === 'rock' || playerChoice === 'Rock' || playerChoice === 'ROCK') {
+                    return 'Rock'; 
+                } else if (playerChoice === 'paper' || playerChoice === 'Paper' || playerChoice === 'PAPER')    { 
+                    return 'Paper';
+                } else if (playerChoice === 'scissors' || playerChoice === 'Scissors' || playerChoice ==='Scissors') {
+                    return 'Scissors';
+                } else {
+                    return 'Unknown choice';
+                }               
+            }
+        
+            const playerSelection = getPlayerSelection();
+            console.log(playerSelection);
+
+            const computerSelection = getComputerChoice();
+            console.log(computerSelection);
+
+            function playRound(playerSelection, computerSelection) {
+                if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection    === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' &&      computerSelection === 'Paper')) {
+                    return 'Player wins';
+                } else if  ((computerSelection === 'Rock' && playerSelection === 'Scissors') || (computerSelection === 'Paper' && playerSelection === 'Rock') || (computerSelection === 'Scissors' && playerSelection === 'Paper')) {
+                    return 'Computer wins!';
+                } else if ((computerSelection === 'Rock' && playerSelection === 'Rock') || (computerSelection === 'Paper' && playerSelection === 'Paper') || (computerSelection === 'Scissors' && playerSelection === 'Scissors') || (playerSelection === 'Rock' && computerSelection === 'Rock') || (playerSelection === 'Paper' && computerSelection === 'Paper') || (playerSelection === 'Scissors' && computerSelection === 'Scissors')) {
+                    return 'It is a tie. Lame!!';
+                } else {
+                    return 'I do not know!';
+                }                
+            }
+            
+            console.log(playRound(playerSelection, computerSelection));
+
+
+            let playerScore = 0;
+            let computerScore = 0;
+            
+            
+            function result (playerSelection, computerSelection) {
+                if (playRound(playerSelection, computerSelection) === 'Player wins') {
+                    playerScore ++;
+                    return playerScore;
+                } else if (playRound(playerSelection, computerSelection) === 'Computer wins!') {
+                    computerScore ++;
+                    return computerScore;
+                } else if (playRound(playerSelection, computerSelection) === 'It is a tie. Lame!!') {
+                    return 'No points';
+                }
+            }    
+          console.log(result (playerSelection, computerSelection));
+         
         }
         
-        const playerSelection = getPlayerSelection();
-        console.log(playerSelection);
-
-        const computerSelection = getComputerChoice();
-        console.log(computerSelection);
-
-        function playRound(playerSelection, computerSelection) {
-            if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
-                return 'Player wins';
-            } else if  ((computerSelection === 'Rock' && playerSelection === 'Scissors') || (computerSelection === 'Paper' && playerSelection === 'Rock') || (computerSelection === 'Scissors' && playerSelection === 'Paper')) {
-                return 'Computer wins!';
-            } else if ((computerSelection === 'Rock' && playerSelection === 'Rock') || (computerSelection === 'Paper' && playerSelection === 'Paper') || (computerSelection === 'Scissors' && playerSelection === 'Scissors') || (playerSelection === 'Rock' && computerSelection === 'Rock') || (playerSelection === 'Paper' && computerSelection === 'Paper') || (playerSelection === 'Scissors' && computerSelection === 'Scissors')) {
-                return 'It is a tie. Lame!!';
-            } else {
-                return 'I do not know!';
+            
+            
+            
+            for (let i = 0; i < 5; i++) {
+                game();
             }
-        } 
 
-        console.log(playRound(playerSelection, computerSelection));
 
-        
 
         
 
+        
         </script>
     </body>
 </html>
