@@ -60,13 +60,13 @@
             computerChoice.textContent = "Computer chose " + computerSelection;
 
             function playRound(playerSelection, computerSelection) {
-                if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection    === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' &&      computerSelection === 'Paper')) {
+                if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
                     playerScore++;
-                    console.log(playerScore);
+                    console.log(`Player score is:  ${playerScore}`);
                     return "Player is the winner";
                 } else if  ((computerSelection === 'Rock' && playerSelection === 'Scissors') || (computerSelection === 'Paper' && playerSelection === 'Rock') || (computerSelection === 'Scissors' && playerSelection === 'Paper')) {
                     computerScore++;
-                    console.log(computerScore);
+                    console.log(`Computer score is: ${computerScore}`);
                     return 'Computer is the winner';
                 } else if ((computerSelection === 'Rock' && playerSelection === 'Rock') || (computerSelection === 'Paper' && playerSelection === 'Paper') || (computerSelection === 'Scissors' && playerSelection === 'Scissors') || (playerSelection === 'Rock' && computerSelection === 'Rock') || (playerSelection === 'Paper' && computerSelection === 'Paper') || (playerSelection === 'Scissors' && computerSelection === 'Scissors')) {
                     console.log('It is a tie.')
@@ -76,17 +76,19 @@
                 }
             }
 
+            console.log(playRound(playerSelection, computerSelection));  
+
             const roundWinner = document.querySelector('.roundWinner');
             const pScore = document.querySelector('.playerScore');
             const cScore = document.querySelector('.computerScore');
             const roundNum = document.querySelector('.round');
 
-            roundWinner.textContent = `Winner of the round: ${playRound(playerSelection, computerSelection)}`;
+            // roundWinner.textContent = `Winner of the round: ${playRound(playerSelection, computerSelection)}`;
             pScore.textContent = `Player score is:  ${playerScore}`;
             cScore.textContent = `Computer score is: ${computerScore}`;
             
 
-            console.log(playRound(playerSelection, computerSelection));    
+              
             
             function finalResult () {
                 if (playerScore > computerScore){
@@ -102,7 +104,7 @@
 
             round++;
             console.log(round);
-            if (round === 5) {
+            if ((playerScore === 5) || (computerScore === 5)) {
                 results.textContent = `${finalResult()}`; 
                 console.log(finalResult());     
                 round = 0;
