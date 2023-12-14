@@ -5,42 +5,36 @@
         <title>Rock Paper Scissors Game</title>
     </head>
     <body>
-        <div id="buttons">
-            <button id="rock" value="Rock">Rock</button>
-            <button id="paper" value="Paper">Paper</button>
-            <button id="scissors" value="Scissors">Scissors</button>
-        </div>
+        <button id="rock" value="Rock" class="player">Rock</button>
+        <button id="paper" value="Paper" class="player">Paper</button>
+        <button id="scissors" value="Scissors" class="player">Scissors</button>
+        
+        <div class="round"></div>
+        <div class="playerSelection"></div>        
+        <div class="computerSelection"></div>
+        <div class="playerScore"></div>
+        <div class="computerScore"></div>
+        <div class="roundWinner"></div>       
+        <div class="results"></div>
 
-        <div class="results">
 
-        </div>
         <script>
 
              // declare the variable choice and make it choose randomly between 0 & 2
              // This gives me 3 possible integers(ie: int) of 0, 1 and 2 which I can equate to rock, paper and scissors
             // Math.random returns a number between 0 (inclusive) & 1 (exclusive). Math.floor is used to return random integer based on what Math.random is being multiplied by.
 
-            document.querySelector('#buttons')
-            .addEventListener('click', event => {
-                var target = event.target;
-                if (target.matches('button')) {
-                    var playerChoice = target.innerHTML;
-                    return playerChoice;
-                    console.log(playerChoice);                          
-                }                                 
-            });
-                         
-            
-            
+            let playerSelection = '';
+            const buttons = document.querySelectorAll('.player');
 
-
-            /*let playerSelection = getPlayerChoice();
-            
-            
-
-             const int = Math.floor(Math.random() * 3);
+            buttons.forEach((button) => {
+                button.addEventListener('click', event => {
+                    game(event.target.value);
+                })
+            });            
              
-             function getComputerChoice () {
+            function getComputerChoice () {
+                const int = Math.floor(Math.random() * 3);
                 if (int === 0) {
                     return 'Rock';
                 } else if (int === 1) {
@@ -48,43 +42,52 @@
                 } else {
                     return 'Scissors';
                 }
-            }
+            }    
             
-            const computerSelection = getComputerChoice();
-            console.log(computerSelection);
-            
+            let round = 0;
             let playerScore = 0;
             let computerScore = 0;
 
+            function game(playerSelection) {
+            const computerSelection = getComputerChoice();
+            console.log(playerSelection);
+            console.log(computerSelection);
+
+            const playerChoice = document.querySelector('.playerSelection');
+            playerChoice.textContent = "Player chose " + playerSelection;
+
+            const computerChoice = document.querySelector('.computerSelection');
+            computerChoice.textContent = "Computer chose " + computerSelection;
+
             function playRound(playerSelection, computerSelection) {
                 if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection    === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' &&      computerSelection === 'Paper')) {
-                    return 'Player wins';
+                    playerScore++;
+                    console.log(playerScore);
+                    return "Player is the winner";
                 } else if  ((computerSelection === 'Rock' && playerSelection === 'Scissors') || (computerSelection === 'Paper' && playerSelection === 'Rock') || (computerSelection === 'Scissors' && playerSelection === 'Paper')) {
-                    return 'Computer wins!';
+                    computerScore++;
+                    console.log(computerScore);
+                    return 'Computer is the winner';
                 } else if ((computerSelection === 'Rock' && playerSelection === 'Rock') || (computerSelection === 'Paper' && playerSelection === 'Paper') || (computerSelection === 'Scissors' && playerSelection === 'Scissors') || (playerSelection === 'Rock' && computerSelection === 'Rock') || (playerSelection === 'Paper' && computerSelection === 'Paper') || (playerSelection === 'Scissors' && computerSelection === 'Scissors')) {
-                    return 'It is a tie. Lame!!';
+                    console.log('It is a tie.')
+                    return "It's a tie";
                 } else {
                     return 'I do not know!';
                 }
             }
 
-            console.log(playRound(playerSelection, computerSelection));
+            const roundWinner = document.querySelector('.roundWinner');
+            const pScore = document.querySelector('.playerScore');
+            const cScore = document.querySelector('.computerScore');
+            const roundNum = document.querySelector('.round');
 
-            function result (playerSelection, computerSelection) {
-                if (playRound(playerSelection, computerSelection) === 'Player wins') {
-                    playerScore ++;
-                    return playerScore;
-                } else if (playRound(playerSelection, computerSelection) === 'Computer wins!') {
-                    computerScore ++;
-                    return computerScore;
-                } else if (playRound(playerSelection, computerSelection) === 'It is a tie. Lame!!') {
-                    return 'No points';
-                }
-            }
+            roundWinner.textContent = `Winner of the round: ${playRound(playerSelection, computerSelection)}`;
+            pScore.textContent = `Player score is:  ${playerScore}`;
+            cScore.textContent = `Computer score is: ${computerScore}`;
+            
 
-            console.log(result (playerSelection, computerSelection));
-                
-                
+            console.log(playRound(playerSelection, computerSelection));    
+            
             function finalResult () {
                 if (playerScore > computerScore){
                     return 'Player wins the game!';
@@ -95,7 +98,24 @@
                 }
             }
 
-            console.log(finalResult());*/
+            const results = document.querySelector('.results');
+
+            round++;
+            console.log(round);
+            if (round === 5) {
+                results.textContent = `${finalResult()}`; 
+                console.log(finalResult());     
+                round = 0;
+                playerScore = 0;
+                computerScore = 0;           
+            }
+
+            roundNum.textContent = `Round: ${round}`;
+            
+            
+            
+                   
+        }
 
         
 
